@@ -1,0 +1,51 @@
+// JavaScript to add Minecraft sound effects
+
+// Load Minecraft sound files
+const themeMusic = new Audio('sounds/theme_music.mp3');
+const blockBreakSound = new Audio('sounds/block_break.mp3');
+const blockPlaceSound = new Audio('sounds/block_place.mp3');
+
+// Function to play the theme music (looped)
+function playThemeMusic() {
+  themeMusic.loop = true; // Make it loop
+  themeMusic.play();
+}
+
+// Function to stop the theme music
+function stopThemeMusic() {
+  themeMusic.pause();
+  themeMusic.currentTime = 0; // Reset to the start
+}
+
+// Function to play block breaking sound
+function playBlockBreak() {
+  blockBreakSound.play();
+}
+
+// Function to play block placing sound
+function playBlockPlace() {
+  blockPlaceSound.play();
+}
+
+// Event Listeners for Interactions
+
+// Play the theme music when the page loads
+window.addEventListener('load', playThemeMusic);
+
+// Play block break sound on clicking task cards (or any element)
+const taskCards = document.querySelectorAll('.task-card');
+taskCards.forEach(card => {
+  card.addEventListener('click', playBlockBreak);
+});
+
+// Play block place sound on hovering over buttons
+const buttons = document.querySelectorAll('.minecraft-button');
+buttons.forEach(button => {
+  button.addEventListener('mouseover', playBlockPlace);
+});
+
+// Optionally: Stop music when clicking a "Stop" button
+const stopButton = document.getElementById('stop-music');
+if (stopButton) {
+  stopButton.addEventListener('click', stopThemeMusic);
+}
